@@ -53,8 +53,9 @@ async def incoming_message_f(client, message):
     """/leech command or /gleech command"""
     user_command = message.command[0]
     g_id = message.from_user.id
+    u_men = message.from_user.mention
     credit = await message.reply_text(
-        f"🧲 Leeching for you <a href='tg://user?id={g_id}'>🤕</a>", parse_mode="html"
+        f"<b>⚙ Leeching For :</b> {u_men}", parse_mode="html"
     )
     i_m_sefg = await message.reply_text("processing...", quote=True)
     # get link from the incoming message
@@ -126,8 +127,9 @@ async def incoming_message_f(client, message):
 async def incoming_youtube_dl_f(client, message):
     """ /ytdl command """
     current_user_id = message.from_user.id
+    u_men = message.from_user.mention
     credit = await message.reply_text(
-        f"💀 Downloading for you <a href='tg://user?id={current_user_id}'>🤕</a>",
+        f"<b>⚙ Leeching For :</b> {u_men}",
         parse_mode="html",
     )
     i_m_sefg = await message.reply_text("processing...", quote=True)
@@ -201,8 +203,9 @@ async def g_yt_playlist(client, message):
         await message.reply_text("😔 No downloading source provided 🙄", quote=True)
         return
     if "youtube.com/playlist" in url:
+        u_men = message.from_user.mention
         i_m_sefg = await message.reply_text(
-            f"💀 Downloading for you <a href='tg://user?id={usr_id}'>🤗</a>",
+            f"<b>⚙ Leeching For :</b> {u_men}",
             parse_mode="html",
         )
         await yt_playlist_downg(message, i_m_sefg, client, is_cloud)
@@ -264,15 +267,15 @@ async def rename_tg_file(client, message):
                 message_id = final_response[key_f_res_se]
                 channel_id = str(message.chat.id)[4:]
                 private_link = f"https://t.me/c/{channel_id}/{message_id}"
-                message_to_send += "👉 <a href='"
+                message_to_send += "✘ <a href='"
                 message_to_send += private_link
                 message_to_send += "'>"
                 message_to_send += local_file_name
                 message_to_send += "</a>"
-                message_to_send += "\n"
+                message_to_send += "\n\n<b>#Uploads</b>\n\n<b>💫 Powered By : @TeluguMoviesDL</b>"
             if message_to_send != "":
                 mention_req_user = (
-                    f"<a href='tg://user?id={usr_id}'>Your Requested Files</a>\n\n"
+                    f"<b><a href='tg://user?id={usr_id}'>📂 Your Requested Files</a></b>\n\n"
                 )
                 message_to_send = mention_req_user + message_to_send
                 message_to_send = message_to_send + "\n\n" + "#uploads"
